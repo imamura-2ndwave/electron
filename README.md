@@ -21,4 +21,6 @@
 ```
 $ node -v
 v7.4.0
+$ yarn --version
+0.27.5
 ```
