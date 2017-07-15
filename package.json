@@ -1,8 +1,16 @@
 {
-  "name": "electron",
+  "name": "test",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
-  "repository": "https://imamura-2ndwave@github.com/imamura-2ndwave/electron.git",
-  "author": "yuki <imamura@2ndwave.jp>",
-  "license": "MIT"
+  "scripts": {
+    "start": "electron index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^1.6.11"
+  }
 }
