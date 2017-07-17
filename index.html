@@ -26,6 +26,38 @@
         const electron = require('electron');
         const ipcRenderer = electron.ipcRenderer;
 
+        // Menuは Main Process でしか使用できないが、
+        // remoteを使うことによって Renderer Process からでも使用できる
+        const remote = electron.remote;
+        const Menu = remote.Menu;
+        const MenuItem = remote.MenuItem;
+
+        let menu = new Menu();
+        menu.append(new MenuItem({ label: 'Skyblue', click: function() {
+            setBackgroundColor('skyblue');
+        }}));
+
+        menu.append(new MenuItem({ label: 'Tomato', click: function() {
+            setBackgroundColor('tomato');
+        }}));
+
+        menu.append(new MenuItem({ label: 'Slategray', click: function() {
+            setBackgroundColor('slategray');
+        }}));
+
+        // 右クリックイベントの登録
+        window.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            menu.popup(remote.getCurrentWindow());
+        });
+
+        // 背景色を変更
+        function setBackgroundColor(color) {
+            document.body.style.backgroundColor = color;
+            // 右クリックメニューから変更した際、メインプロセスに通知してあげないと設定画面を開いた時に設定が反映されない
+            ipcRenderer.send('bgcolor_changed', color);
+        }
+
         const fruit = document.getElementById('fruit');
         const fruits = [
             'りんご',
@@ -43,7 +75,7 @@
 
         // 受け取った設定値を背景色に反映する。
         ipcRenderer.on('set_bgcolor', function(event, color) {
-            document.body.style.backgroundColor = color;
+            setBackgroundColor(color);
         });
     </script>
 </body>
