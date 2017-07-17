@@ -37,7 +37,8 @@
         'use strict';
 
         const ipcRenderer = require('electron').ipcRenderer;    // 非同期通信
-        let currentColor = ipcRenderer.sendSync('get_bgcolor'); // 同期通信
+        // let currentColor = ipcRenderer.sendSync('get_bgcolor'); // 同期通信
+        let currentColor = localStorage.getItem('color');       // データの永続化
 
         let colors = document.getElementsByName('colors');
         for (let i = 0; i < colors.length; i++) {

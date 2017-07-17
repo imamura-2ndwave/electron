@@ -32,6 +32,9 @@
         const Menu = remote.Menu;
         const MenuItem = remote.MenuItem;
 
+        let color = localStorage.getItem('color') || 'skyblue';
+        setBackgroundColor(color);
+
         let menu = new Menu();
         menu.append(new MenuItem({ label: 'Skyblue', click: function() {
             setBackgroundColor('skyblue');
@@ -54,8 +57,10 @@
         // 背景色を変更
         function setBackgroundColor(color) {
             document.body.style.backgroundColor = color;
+            // データの永続化: ローカルストレージに設定値を保持する
+            localStorage.setItem('color', color);
             // 右クリックメニューから変更した際、メインプロセスに通知してあげないと設定画面を開いた時に設定が反映されない
-            ipcRenderer.send('bgcolor_changed', color);
+            // ipcRenderer.send('bgcolor_changed', color);
         }
 
         const fruit = document.getElementById('fruit');
