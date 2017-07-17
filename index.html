@@ -19,6 +19,24 @@
     </style>
 </head>
 <body>
-    <p id="app">sample!</p>
+    <p id="fruit">りんご</p>
+    <script>
+        'use strict';
+
+        const fruit = document.getElementById('fruit');
+        const fruits = [
+            'りんご',
+            'バナナ',
+            'ぶどう',
+            'イチゴ',
+            'モモ',
+            'みかん',
+            'レモン',
+        ];
+
+        window.addEventListener('click', function() {
+            fruit.innerHTML = fruits[Math.floor(Math.random() * fruits.length)]
+        });
+    </script>
 </body>
 </html>
