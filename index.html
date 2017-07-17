@@ -23,6 +23,9 @@
     <script>
         'use strict';
 
+        const electron = require('electron');
+        const ipcRenderer = electron.ipcRenderer;
+
         const fruit = document.getElementById('fruit');
         const fruits = [
             'りんご',
@@ -36,6 +39,10 @@
 
         window.addEventListener('click', function() {
             fruit.innerHTML = fruits[Math.floor(Math.random() * fruits.length)]
+        });
+
+        ipcRenderer.on('set_bgcolor', function(event, color) {
+            document.body.style.backgroundColor = color;
         });
     </script>
 </body>

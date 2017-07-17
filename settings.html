@@ -36,11 +36,15 @@
     <script>
         'use strict';
 
+        const ipcRenderer = require('electron').ipcRenderer;
+
         let colors = document.getElementsByName('colors');
         for (let i = 0; i < colors.length; i++) {
             colors[i].addEventListener('change', function() {
                 let color = this.value;
-                console.log(color);
+                // console.log(color);
+                // ipc settings.html -> index.js(メインプロセス) -> index.html
+                ipcRenderer.send('settings_changed', color);
             });
         }
     </script>
