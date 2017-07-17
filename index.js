@@ -11,9 +11,8 @@ const BrowserWindow = electron.BrowserWindow;
 
 let mainWindow;
 
-// アプリの初期化が終わった時に呼ばれるイベント
-app.on('ready', function() {
-    // create window
+// メインウィンドウを作成
+function createMainWindow() {
     mainWindow = new BrowserWindow({ width: 600, height: 400});
     mainWindow.loadURL('file://' + __dirname + '/index.html');
 
@@ -21,4 +20,25 @@ app.on('ready', function() {
     mainWindow.on('closed', function() {
         mainWindow = null;
     });
+}
+
+// アプリの初期化が終わった時に呼ばれるイベント
+app.on('ready', function() {
+    // create window
+    createMainWindow();
+});
+
+// 全てのウィンドウが閉じられた時の処理
+app.on('window-all-closed', function() {
+    // Macの場合はウィンドウが閉じられてもアプリは終了しない
+    if (process.platform !== 'darwin') {
+        app.quit();
+    }
+});
+
+// 閉じたウィンドウを再度表示する処理
+app.on('activate', function() {
+    if (mainWindow === null) {
+        createMainWindow();
+    }
 });
