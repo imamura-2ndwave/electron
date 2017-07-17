@@ -12,6 +12,7 @@ const Menu = electron.Menu;
 const dialog = electron.dialog;
 
 let mainWindow;
+let settingsWindow;
 
 let menuTemplate = [{
     label: 'MyApp',
@@ -26,12 +27,25 @@ let menuTemplate = [{
 
 let menu = Menu.buildFromTemplate(menuTemplate);
 
+// アバウトメニューダイアログ
 function showAboutDialog() {
     dialog.showMessageBox({
         type: 'info',
         buttons: ['OK'],
         message: 'About This App',
         detail: 'This ap was created by imamura.'
+    });
+}
+
+// 設定メニューウィンドウ
+function showSettingsWindow() {
+    settingsWindow = new BrowserWindow({ width: 600, height: 400});
+    settingsWindow.loadURL('file://' + __dirname + '/settings.html');
+
+    settingsWindow.webContents.openDevTools();  // debug用
+    settingsWindow.show();
+    settingsWindow.on('closed', function() {
+        settingsWindow = null;
     });
 }
 
