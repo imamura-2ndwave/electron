@@ -15,11 +15,11 @@ let mainWindow;
 let menuTemplate = [{
     label: 'MyApp',
     submenu: [
-        { label: 'About' },
+        { label: 'About', accelerator: 'CmdOrCtrl+A', click: function() { showAboutDialog(); } },
         { type: 'separator' },
-        { label: 'Settings' },
+        { label: 'Settings', accelerator: 'CmdOrCtrl+,', click: function() { showSettingsWindow(); } },
         { type: 'separator' },
-        { label: 'Quit' },
+        { label: 'Quit', accelerator: 'CmdOrCtrl+Q', click: function() { app.quit(); } },
     ]
 }];
 
