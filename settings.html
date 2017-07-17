@@ -10,6 +10,20 @@
             padding: 10px;
             background: #eee;
         }
+        h1 {
+            font-size: 16px;
+            margin: 0;
+            padding: 0 0 10px 0;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        ul > li {
+            font-size: 14px;
+            padding: 3px 0;
+        }
     </style>
 </head>
 <body>
@@ -21,6 +35,14 @@
     </ul>
     <script>
         'use strict';
+
+        let colors = document.getElementsByName('colors');
+        for (let i = 0; i < colors.length; i++) {
+            colors[i].addEventListener('change', function() {
+                let color = this.value;
+                console.log(color);
+            });
+        }
     </script>
 </body>
 </html>
