@@ -41,6 +41,7 @@
             fruit.innerHTML = fruits[Math.floor(Math.random() * fruits.length)]
         });
 
+        // 受け取った設定値を背景色に反映する。
         ipcRenderer.on('set_bgcolor', function(event, color) {
             document.body.style.backgroundColor = color;
         });
