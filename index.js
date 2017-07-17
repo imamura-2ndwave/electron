@@ -56,7 +56,7 @@ function showSettingsWindow() {
     settingsWindow = new BrowserWindow({ width: 600, height: 400});
     settingsWindow.loadURL('file://' + __dirname + '/settings.html');
 
-    settingsWindow.webContents.openDevTools();  // debug用
+    // settingsWindow.webContents.openDevTools();  // debug用
     settingsWindow.show();
     settingsWindow.on('closed', function() {
         settingsWindow = null;
@@ -69,7 +69,7 @@ function createMainWindow() {
     mainWindow = new BrowserWindow({ width: 600, height: 400});
     mainWindow.loadURL('file://' + __dirname + '/index.html');
 
-    mainWindow.webContents.openDevTools();  // debug用
+    // mainWindow.webContents.openDevTools();  // debug用
     mainWindow.on('closed', function() {
         mainWindow = null;
     });
