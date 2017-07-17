@@ -31,6 +31,7 @@
         const remote = electron.remote;
         const Menu = remote.Menu;
         const MenuItem = remote.MenuItem;
+        const shell = remote.shell;     // デスクトップアプリとの連携
 
         let color = localStorage.getItem('color') || 'skyblue';
         setBackgroundColor(color);
@@ -82,6 +83,18 @@
         ipcRenderer.on('set_bgcolor', function(event, color) {
             setBackgroundColor(color);
         });
+
+        setTimeout(function() {
+            let notification = new Notification(
+                'Yahooooo!!!',
+                { body: 'Yahoo! Japan!' }
+            );
+
+            notification.onclick = function() {
+                // 規定のブラウザで開く
+                shell.openExternal('https://www.yahoo.co.jp');
+            }
+        }, 3000);
     </script>
 </body>
 </html>
